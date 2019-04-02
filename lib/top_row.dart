@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solitaire_flutter/playing_card.dart';
 import 'card_column.dart';
+import 'playscreen.dart';
 import 'transformed_card.dart';
 
 class TopRow extends StatefulWidget {
@@ -24,37 +25,54 @@ class _TopRowState extends State<TopRow> {
                 height: 60.0,
                 width: 40.0,
                 decoration: BoxDecoration(
-                    border: Border.all(width: 2.0, color: Colors.black),
-                    borderRadius: BorderRadius.circular(10.0),
-                    // image: DecorationImage(
-                    //   image: AssetImage(''),
-                    //   fit: BoxFit.cover
-                    // )
-                    ),
+                  border: Border.all(width: 2.0, color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: _suitImage(),
               )
             : TransformCard(
-              playingCard: widget.cards.last,
-              attachedCards: [widget.cards.last],
-              columnIndex: widget.columnIndex,
-            );
+                playingCard: widget.cards.last,
+                columnIndex: widget.columnIndex,
+                attachedCards: [
+                  widget.cards.last,
+                ],
+              );
+            // : CardColumn(
+            //     cards: widget.cards,
+            //     columnIndex: widget.columnIndex,
+            //     onCardsAdded: widget.onCardAccepted,
+            //   );
       },
-      onWillAccept: (value){
+      onWillAccept: (value) {
         PlayingCard addedCard = value["cards"].last;
 
-        if(addedCard.suit == widget.suit){
-          if(addedCard.value == widget.cards.last.value){
+      if(widget.suit == addedCard.suit){
+        if (addedCard.suit == widget.suit) {
+          if (CardType.values.indexOf(addedCard.value) == widget.cards.length) {
             return true;
           }
           return false;
-        }
-
+        }}
       },
-      onAccept: (value){
+      onAccept: (value) {
         widget.onCardAccepted(
-        value["cards"],
-        value["index"],
+          value["cards"],
+          value["fromIndex"],
         );
       },
     );
+  }
+
+  Image _suitImage() {
+
+    if (widget.suit == CardSuit.clubs) {
+      return Image.asset('assets/clubs.png');
+    } else if (widget.suit == CardSuit.diamonds) {
+      return Image.asset('assets/diamonds.png');
+    } else if (widget.suit == CardSuit.spades) {
+      return Image.asset('assets/spades.png');
+    } else if (widget.suit == CardSuit.hearts) {
+      return Image.asset('assets/heart.png');
+    }
   }
 }

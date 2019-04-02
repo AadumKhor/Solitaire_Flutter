@@ -56,6 +56,7 @@ flutter:
    - assets/C11.png
    - assets/C12.png
    - assets/C13.png
+   - assets/clubs.png
    - assets/D1.png
    - assets/D2.png
    - assets/D3.png
@@ -69,6 +70,7 @@ flutter:
    - assets/D11.png
    - assets/D12.png
    - assets/D13.png
+   - assets/diamonds.png
    - assets/H1.png
    - assets/H2.png
    - assets/H3.png
@@ -83,6 +85,7 @@ flutter:
    - assets/H11.png
    - assets/H12.png
    - assets/H13.png
+   - assets/heart.png
    - assets/S1.png
    - assets/S2.png
    - assets/S3.png
@@ -96,6 +99,7 @@ flutter:
    - assets/S11.png
    - assets/S12.png
    - assets/S13.png
+   - assets/spades.png
 
    
   #  - Clover/

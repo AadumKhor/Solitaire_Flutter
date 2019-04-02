@@ -37,13 +37,15 @@ class _PlayScreenState extends State<PlayScreen> {
 
   // list of cards in each column
 
-  List<PlayingCard> bottom0 = new List();
-  List<PlayingCard> bottom1 = new List();
-  List<PlayingCard> bottom2 = new List();
-  List<PlayingCard> bottom3 = new List();
-  List<PlayingCard> bottom4 = new List();
-  List<PlayingCard> bottom5 = new List();
-  List<PlayingCard> bottom6 = new List();
+  static List<PlayingCard> bottom0 = new List();
+  static List<PlayingCard> bottom1 = new List();
+  static List<PlayingCard> bottom2 = new List();
+  static List<PlayingCard> bottom3 = new List();
+  static List<PlayingCard> bottom4 = new List();
+  static List<PlayingCard> bottom5 = new List();
+  static List<PlayingCard> bottom6 = new List();
+
+  // List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6]; 
 
   // the cards that are shown and the cards that are not present
 
@@ -134,11 +136,11 @@ class _PlayScreenState extends State<PlayScreen> {
           // the top row
           Row(
             children: <Widget>[
-              _generateBoard(),
-              SizedBox(width: 80.0,),
-              _buildFinalDecks(),
+              Align(alignment:Alignment.centerLeft,child: _generateBoard()),
+              Spacer(flex: 1,),
+              Align(alignment : Alignment.centerRight, child: _buildFinalDecks()),
             ],
-          ),         
+          ),
           SizedBox(
             height: 50.0,
           ),
@@ -240,7 +242,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   cards: bottom6,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      bottom6.addAll(deck);
+                      bottom6.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -252,6 +254,19 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
             ],
           ),
+          FlatButton(
+            color: Colors.black,
+            child: new Text(
+              'Reset Board',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            onPressed: () {
+              _startFunction();
+            },
+          )
         ],
       ),
     );
@@ -267,6 +282,7 @@ class _PlayScreenState extends State<PlayScreen> {
     bottom4 = [];
     bottom5 = [];
     bottom6 = [];
+    // final bottomDecks = [bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
 
     finalClubsDeck = []; // empty top rowws
     finalDiamondsDeck = [];
@@ -290,7 +306,7 @@ class _PlayScreenState extends State<PlayScreen> {
           ..isFaceUp = true
           ..isOpened = true);
         deck.removeAt(rand);
-      } else if (i > 0 && i < 3) {
+      } else if (i > 0 && i <=2) {
         //second card second column
         if (i == 2) {
           PlayingCard card = deck[rand];
@@ -299,7 +315,7 @@ class _PlayScreenState extends State<PlayScreen> {
             ..isOpened = true);
           deck.removeAt(rand);
         } else {
-          bottom2.add(deck[rand]);
+          bottom1.add(deck[rand]);
         }
         deck.removeAt(rand);
       } else if (i > 2 && i < 6) {
@@ -346,7 +362,7 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom5.add(deck[rand]);
         }
         deck.removeAt(rand);
-      } else {
+      } else if(i > 20 &&  i <28) {
         //last card of the last column
         if (i == 27) {
           PlayingCard card = deck[rand];
@@ -361,6 +377,14 @@ class _PlayScreenState extends State<PlayScreen> {
     }
     // we need to declare how many cards are left and how many are shown
 
+    // for(var i = 0; i <=6 ; i++){
+    //   bottomDecks[i] = deck.sublist(
+    //     ((i * (i+1))~/2) , ((i * (i+1))~/2) + i +1
+    //   );
+      
+    //   bottomDecks[i].last..isFaceUp = true ..isOpened = true;
+    //   deck.remove(bottomDecks[i]);
+    // }
     cardDeckClosed = deck; // first assign it equal to the full deck
 
     // then add the last cards of the above deck to the opened deck to make it open.
@@ -369,7 +393,9 @@ class _PlayScreenState extends State<PlayScreen> {
       ..isFaceUp = true
       ..isOpened = true);
 
-    setState(() {}); // setting the state of the game
+    setState(() {
+      cardDeckClosed = deck;
+    }); // setting the state of the game
   }
 
   // checking if the top row has all the cards in order.
@@ -390,6 +416,10 @@ class _PlayScreenState extends State<PlayScreen> {
       }
     });
   }
+
+  // void repeatDeck(){
+    
+  // }
 
   // Handle a win condition
   void _handleWin() {
@@ -413,7 +443,7 @@ class _PlayScreenState extends State<PlayScreen> {
     );
   }
 
-    Widget _buildFinalDecks() {
+  Widget _buildFinalDecks() {
     return Container(
       child: Row(
         children: <Widget>[
@@ -423,10 +453,11 @@ class _PlayScreenState extends State<PlayScreen> {
               suit: CardSuit.hearts,
               cards: finalHeartsDeck,
               onCardAccepted: (cards, index) {
-                finalHeartsDeck.addAll(cards);
+                finalHeartsDeck.addAll(cards);                
                 int length = _getListFromIndex(index).length;
                 _getListFromIndex(index)
                     .removeRange(length - cards.length, length);
+                
                 _refreshList(index);
               },
               columnIndex: 8,
@@ -480,7 +511,7 @@ class _PlayScreenState extends State<PlayScreen> {
         ],
       ),
     );
-}
+  }
 
   // function that will lay out our board on the staring of the game
   Widget _generateBoard() {

@@ -52,7 +52,7 @@ class _CardColumnState extends State<CardColumn> {
             },
             onWillAccept: (value) {
               // If empty, accept
-              if (widget.cards.length == 0) {
+              if (widget.cards.length == 0 && widget.cards.first.value == CardType.king) {
                 return true;
               }
 
