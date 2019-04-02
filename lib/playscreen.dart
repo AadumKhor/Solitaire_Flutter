@@ -519,22 +519,7 @@ class _PlayScreenState extends State<PlayScreen> {
       child: Row(
         children: <Widget>[
           GestureDetector(
-            child: cardDeckClosed.isNotEmpty
-                ? Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: TransformCard(
-                      playingCard: cardDeckClosed.last,
-                    ),
-                  )
-                : Opacity(
-                    opacity: 0.4,
-                    child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          color: Colors.red,
-                        )),
-                  ),
-            onTap: () {
+                 onTap: () {
               setState(() {
                 if (cardDeckClosed.isEmpty) {
                   cardDeckClosed.addAll(cardDeckOpened.map((card) {
@@ -549,6 +534,22 @@ class _PlayScreenState extends State<PlayScreen> {
                 }
               });
             },
+            child: 
+                 Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: TransformCard(
+                      playingCard: cardDeckClosed.last,
+                    ),
+                  ),
+                // : Opacity(
+                //     opacity: 0.9,
+                //     child: Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Container(
+                //           color: Colors.red,
+                //         )),
+                //   ),
+       
           ),
           cardDeckOpened.isNotEmpty
               ? Padding(

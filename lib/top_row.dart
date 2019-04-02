@@ -37,11 +37,6 @@ class _TopRowState extends State<TopRow> {
                   widget.cards.last,
                 ],
               );
-            // : CardColumn(
-            //     cards: widget.cards,
-            //     columnIndex: widget.columnIndex,
-            //     onCardsAdded: widget.onCardAccepted,
-            //   );
       },
       onWillAccept: (value) {
         PlayingCard addedCard = value["cards"].last;
@@ -62,6 +57,8 @@ class _TopRowState extends State<TopRow> {
       },
     );
   }
+
+  // for diplaying top row suits
 
   Image _suitImage() {
 
