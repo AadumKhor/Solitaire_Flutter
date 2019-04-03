@@ -233,19 +233,20 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
             ],
           ),
+          Spacer(flex: 1,),
           FlatButton(
-            color: Colors.black,
-            child: new Text(
-              'Reset Board',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            onPressed: () {
-              _startFunction();
-            },
-          )
+              color: Colors.black,
+              child: new Text(
+                'Reset Board',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                _startFunction();
+              },
+            )
         ],
       ),
     );
@@ -261,7 +262,7 @@ class _PlayScreenState extends State<PlayScreen> {
     bottom4 = [];
     bottom5 = [];
     bottom6 = [];
-    final bottomDecks = [bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
+    // final bottomDecks = [bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
 
     finalClubsDeck = []; // empty top rowws
     finalDiamondsDeck = [];

@@ -84,9 +84,9 @@ class _TransformCardState extends State<TransformCard> {
       decoration: BoxDecoration(
           color: Colors.white,
           // borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(width: 2.0, color: Colors.black),
+          border: Border.all(width: 0.5, color: Colors.black),
           image: DecorationImage(
-              image: AssetImage('assets/${s + v}.png'), fit: BoxFit.scaleDown)),
+              image: AssetImage('assets/${s + v}.png'), fit: BoxFit.cover)),
     );
   }
 
