@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solitaire_flutter/playing_card.dart';
-import 'card_column.dart';
-import 'transformed_card.dart';
+import 'bottom_columns.dart';
+import 'moving_card.dart';
 
 class TopRow extends StatefulWidget {
   final CardSuit suit;

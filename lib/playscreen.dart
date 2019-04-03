@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:solitaire_flutter/card_column.dart';
-import 'package:solitaire_flutter/transformed_card.dart';
+import 'package:solitaire_flutter/bottom_columns.dart';
+import 'package:solitaire_flutter/moving_card.dart';
 // import 'solitaire.dart';
 import 'playing_card.dart';
 import 'top_row.dart';

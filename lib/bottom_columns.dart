@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solitaire_flutter/transformed_card.dart';
+import 'package:solitaire_flutter/moving_card.dart';
 // import 'playscreen.dart';
 import 'playing_card.dart';
 

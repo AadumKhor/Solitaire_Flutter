@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'playscreen.dart';
-import 'card_column.dart';
+import 'bottom_columns.dart';
 import 'playing_card.dart';
 
 class TransformCard extends StatefulWidget {
