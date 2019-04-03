@@ -7,7 +7,9 @@ APK Link : - https://drive.google.com/open?id=1p_D1qwMVPyzeVimQFVknSckAUpJNSgun.
 
 Solitaire or Klondike implemented originally by Microsoft is a single player game. This is just a simple implementation of it in Flutter with similar but not the exact same functionalities.
 
-![](https://drive.google.com/file/d/1uSWTLnHCHQn4yjZHIVwRO9y1Oa-7lZJX/view)
+
+![image](https://user-images.githubusercontent.com/37381075/55474971-422a5400-5630-11e9-8b71-cbe1e45a2ee3.png) 
+![image](https://user-images.githubusercontent.com/37381075/55475236-f926cf80-5630-11e9-94e2-4b497efce264.png)
 
 ## Rules  
   1. Cards are to be arranged in order from King to Ace with alternate suit pattern (i.e Red Black Red.. or Black Red Black...) and each new pile has to start with a King. Failing this can lead to losing the game.
