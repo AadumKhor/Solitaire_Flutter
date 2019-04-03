@@ -59,32 +59,21 @@ class _CardColumnState extends State<CardColumn> {
               // Get dragged cards list
               List<PlayingCard> draggedCards = value["cards"];
               PlayingCard firstCard = draggedCards.first;
-              if (firstCard.getCardColor == CardColor.red) {
-                if (widget.cards.last.getCardColor == CardColor.red) {
-                  return false;
-                }
-
-                int lastColumnCardIndex = CardType.values.indexOf(widget.cards.last.value);
-                int firstDraggedCardIndex = CardType.values.indexOf(firstCard.value);
-
-                if(lastColumnCardIndex != firstDraggedCardIndex + 1) {
-                  return false;
-                }
-
-              } else {
-                if (widget.cards.last.getCardColor == CardColor.black) {
-                  return false;
-                }
-
-                int lastColumnCardIndex = CardType.values.indexOf(widget.cards.last.value);
-                int firstDraggedCardIndex = CardType.values.indexOf(firstCard.value);
-
-                if(lastColumnCardIndex != firstDraggedCardIndex + 1) {
-                  return false;
-                }
-
+              int lastColumnIndex = CardType.values.indexOf(widget.cards.last.value);
+              int firstCardIndex = CardType.values.indexOf(draggedCards.last.value);
+              
+              if(widget.cards.last.getCardColor() == firstCard.getCardColor()){
+                return false;
               }
-              return true;
+              else if(lastColumnIndex != firstCardIndex +1){
+                return false;
+              }
+              else if(lastColumnIndex == firstCardIndex +1){
+                return true;
+              }
+              else {
+                return true;
+              }
             },
             onAccept: (value) {
               widget.onCardsAdded(
