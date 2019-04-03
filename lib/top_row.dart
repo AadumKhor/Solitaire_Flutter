@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solitaire_flutter/playing_card.dart';
 import 'card_column.dart';
-import 'playscreen.dart';
 import 'transformed_card.dart';
 
 class TopRow extends StatefulWidget {

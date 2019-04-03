@@ -13,24 +13,6 @@ class PlayScreen extends StatefulWidget {
 }
 
 class _PlayScreenState extends State<PlayScreen> {
-  // List<String> color = ['red' , 'black'];
-  // List<String> suits = ["C", 'D', "H", "S"];
-  // List<String> values = [
-  //   "1",
-  //   "2",
-  //   "3",
-  //   "4",
-  //   "5",
-  //   "6",
-  //   "7",
-  //   "8",
-  //   "9",
-  //   "10",
-  //   "11",
-  //   "12",
-  //   '13'
-  // ];
-
   // the original deck of cards
 
   List<PlayingCard> deck = [];
@@ -45,7 +27,7 @@ class _PlayScreenState extends State<PlayScreen> {
   static List<PlayingCard> bottom5 = new List();
   static List<PlayingCard> bottom6 = new List();
 
-  // List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6]; 
+  // List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
 
   // the cards that are shown and the cards that are not present
 
@@ -67,12 +49,6 @@ class _PlayScreenState extends State<PlayScreen> {
   // make the deck of cards
   List<PlayingCard> makeDeck() {
     List<PlayingCard> newDeck = [];
-
-    // for (String s in suits) {
-    //   for (String v in values) {
-    //     newDeck.add(s + v);
-    //   }
-    // }
 
     CardSuit.values.forEach((suit) {
       CardType.values.forEach((type) {
@@ -136,9 +112,12 @@ class _PlayScreenState extends State<PlayScreen> {
           // the top row
           Row(
             children: <Widget>[
-              Align(alignment:Alignment.centerLeft,child: _generateBoard()),
-              Spacer(flex: 1,),
-              Align(alignment : Alignment.centerRight, child: _buildFinalDecks()),
+              Align(alignment: Alignment.centerLeft, child: _generateBoard()),
+              Spacer(
+                flex: 1,
+              ),
+              Align(
+                  alignment: Alignment.centerRight, child: _buildFinalDecks()),
             ],
           ),
           SizedBox(
@@ -306,7 +285,7 @@ class _PlayScreenState extends State<PlayScreen> {
           ..isFaceUp = true
           ..isOpened = true);
         deck.removeAt(rand);
-      } else if (i > 0 && i <=2) {
+      } else if (i > 0 && i <= 2) {
         //second card second column
         if (i == 2) {
           PlayingCard card = deck[rand];
@@ -362,7 +341,7 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom5.add(deck[rand]);
         }
         deck.removeAt(rand);
-      } else if(i > 20 &&  i <28) {
+      } else if (i > 20 && i < 28) {
         //last card of the last column
         if (i == 27) {
           PlayingCard card = deck[rand];
@@ -381,7 +360,7 @@ class _PlayScreenState extends State<PlayScreen> {
     //   bottomDecks[i] = deck.sublist(
     //     ((i * (i+1))~/2) , ((i * (i+1))~/2) + i +1
     //   );
-      
+
     //   bottomDecks[i].last..isFaceUp = true ..isOpened = true;
     //   deck.remove(bottomDecks[i]);
     // }
@@ -418,7 +397,7 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   // void repeatDeck(){
-    
+
   // }
 
   // Handle a win condition
@@ -453,11 +432,11 @@ class _PlayScreenState extends State<PlayScreen> {
               suit: CardSuit.hearts,
               cards: finalHeartsDeck,
               onCardAccepted: (cards, index) {
-                finalHeartsDeck.addAll(cards);                
+                finalHeartsDeck.addAll(cards);
                 int length = _getListFromIndex(index).length;
                 _getListFromIndex(index)
                     .removeRange(length - cards.length, length);
-                
+
                 _refreshList(index);
               },
               columnIndex: 8,
@@ -519,37 +498,55 @@ class _PlayScreenState extends State<PlayScreen> {
       child: Row(
         children: <Widget>[
           GestureDetector(
-                 onTap: () {
+            onTap: () {
               setState(() {
-                if (cardDeckClosed.isEmpty) {
-                  cardDeckClosed.addAll(cardDeckOpened.map((card) {
-                    return card
-                      ..isFaceUp = false
-                      ..isOpened = false;
-                  }));
-                } else {
-                  cardDeckOpened.add(cardDeckClosed.removeLast()
-                    ..isFaceUp = true
-                    ..isOpened = true);
-                }
+                // if (cardDeckClosed.isEmpty) {
+                //   cardDeckClosed.addAll(cardDeckOpened.map((card) {
+                //     return card
+                //       ..isFaceUp = false
+                //       ..isOpened = false;
+                //   }));
+                // } else {
+                cardDeckOpened.add(cardDeckClosed.removeLast()
+                  ..isFaceUp = true
+                  ..isOpened = true);
+                // }
               });
             },
-            child: 
-                 Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: TransformCard(
-                      playingCard: cardDeckClosed.last,
-                    ),
-                  ),
-                // : Opacity(
-                //     opacity: 0.9,
-                //     child: Padding(
-                //         padding: const EdgeInsets.all(4.0),
-                //         child: Container(
-                //           color: Colors.red,
-                //         )),
-                //   ),
-       
+            child: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: cardDeckClosed.isNotEmpty
+                    ? TransformCard(
+                        playingCard: cardDeckClosed.last,
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            // cardDeckOpened.reversed;
+                            cardDeckClosed.addAll(cardDeckOpened.reversed.map((card) {
+                              return card
+                                ..isFaceUp = false
+                                ..isOpened = false;
+                            }));
+                            // cardDeckClosed.reversed;
+                            cardDeckOpened = [];
+                          });
+                        },
+                        child: Container(
+                          height: 60.0,
+                          width: 40.0,
+                          decoration: BoxDecoration(
+                              color: Colors.black26,
+                              border: Border.all(width: 2.0)),
+                        ))),
+            // : Opacity(
+            //     opacity: 0.9,
+            //     child: Padding(
+            //         padding: const EdgeInsets.all(4.0),
+            //         child: Container(
+            //           color: Colors.red,
+            //         )),
+            //   ),
           ),
           cardDeckOpened.isNotEmpty
               ? Padding(
