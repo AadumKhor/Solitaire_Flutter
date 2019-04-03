@@ -1,12 +1,13 @@
 # Solitaire made in Flutter
 
 The classic game of Solitaire made entirely on Flutter.
+APK Link : - https://drive.google.com/open?id=1p_D1qwMVPyzeVimQFVknSckAUpJNSgun. No link to test on iOS because I don't have a Mac yet :P.
 
 ## Description
 
 Solitaire or Klondike implemented originally by Microsoft is a single player game. This is just a simple implementation of it in Flutter with similar but not the exact same functionalities.
 
-![]()
+![](https://drive.google.com/file/d/1uSWTLnHCHQn4yjZHIVwRO9y1Oa-7lZJX/view)
 
 ## Rules  
   1. Cards are to be arranged in order from King to Ace with alternate suit pattern (i.e Red Black Red.. or Black Red Black...) and each new pile has to start with a King. Failing this can lead to losing the game.
