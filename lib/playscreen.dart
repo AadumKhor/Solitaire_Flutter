@@ -27,7 +27,7 @@ class _PlayScreenState extends State<PlayScreen> {
   static List<PlayingCard> bottom5 = new List();
   static List<PlayingCard> bottom6 = new List();
 
-  // List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
+  List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
 
   // the cards that are shown and the cards that are not present
 
@@ -261,7 +261,7 @@ class _PlayScreenState extends State<PlayScreen> {
     bottom4 = [];
     bottom5 = [];
     bottom6 = [];
-    // final bottomDecks = [bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
+    final bottomDecks = [bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
 
     finalClubsDeck = []; // empty top rowws
     finalDiamondsDeck = [];
@@ -272,11 +272,11 @@ class _PlayScreenState extends State<PlayScreen> {
     cardDeckOpened = []; // cards that are shown
 
     playCards(); // generates a shuffled deck
-
+    print(deck.length);
     Random random = Random(); // take a random number
 
     // laying cards on the screen using a pattern
-    for (int i = 0; i < 28; i++) {
+    for (int i = 0; i <= 27; ++i) {
       int rand = random.nextInt(deck.length);
       // first card fisrt column
       if (i == 0) {
@@ -285,18 +285,19 @@ class _PlayScreenState extends State<PlayScreen> {
           ..isFaceUp = true
           ..isOpened = true);
         deck.removeAt(rand);
-      } else if (i > 0 && i <= 2) {
+        // print("After 1st iteration : ${deck.length}" );
+      } else if (i > 0 && i < 3) {
         //second card second column
         if (i == 2) {
           PlayingCard card = deck[rand];
           bottom1.add(card
             ..isFaceUp = true
             ..isOpened = true);
-          deck.removeAt(rand);
         } else {
           bottom1.add(deck[rand]);
         }
         deck.removeAt(rand);
+        // print("After 2nd iteration : ${deck.length}" );
       } else if (i > 2 && i < 6) {
         //third card third column
         if (i == 5) {
@@ -308,6 +309,7 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom2.add(deck[rand]);
         }
         deck.removeAt(rand);
+        // print("After 3rd iteration : ${deck.length}" );
       } else if (i > 5 && i < 10) {
         // fourth card fourth column
         if (i == 9) {
@@ -319,6 +321,7 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom3.add(deck[rand]);
         }
         deck.removeAt(rand);
+        // print("After 4th iteration : ${deck.length}" );
       } else if (i > 9 && i < 15) {
         // 5th card 5th column
         if (i == 14) {
@@ -330,6 +333,7 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom4.add(deck[rand]);
         }
         deck.removeAt(rand);
+        // print("After 5th iteration : ${deck.length}" );
       } else if (i > 14 && i < 21) {
         if (i == 20) {
           //sixth card sixth column
@@ -341,7 +345,8 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom5.add(deck[rand]);
         }
         deck.removeAt(rand);
-      } else if (i > 20 && i < 28) {
+        // print("After 6th iteration : ${deck.length}" );
+      } else if (i > 20 && i <= 27) {
         //last card of the last column
         if (i == 27) {
           PlayingCard card = deck[rand];
@@ -352,29 +357,33 @@ class _PlayScreenState extends State<PlayScreen> {
           bottom6.add(deck[rand]);
         }
         deck.removeAt(rand);
+        // print("After last iteration : ${deck.length}" );
       }
     }
+    // print(deck.length);
+    
     // we need to declare how many cards are left and how many are shown
 
     // for(var i = 0; i <=6 ; i++){
     //   bottomDecks[i] = deck.sublist(
     //     ((i * (i+1))~/2) , ((i * (i+1))~/2) + i +1
     //   );
-
-    //   bottomDecks[i].last..isFaceUp = true ..isOpened = true;
+    //   PlayingCard card = bottomDecks[i].elementAt(i);
+      
+      
     //   deck.remove(bottomDecks[i]);
-    // }
-    cardDeckClosed = deck; // first assign it equal to the full deck
-
+    //   }
+    cardDeckClosed = deck;  // first assign it equal to the full deck
+    print(cardDeckClosed.length);
+    // print(cardDeckClosed.last); /
     // then add the last cards of the above deck to the opened deck to make it open.
     // since it is open we know it is faceUP and opened is true
-    cardDeckOpened.add(cardDeckClosed.removeLast()
+    cardDeckOpened.add(cardDeckClosed.removeAt(cardDeckClosed.length -1)
       ..isFaceUp = true
       ..isOpened = true);
-
-    setState(() {
-      cardDeckClosed = deck;
-    }); // setting the state of the game
+      print(cardDeckOpened.length);
+      print(cardDeckClosed.length + cardDeckOpened.length);
+    setState(() {}); // setting the state of the game
   }
 
   // checking if the top row has all the cards in order.
@@ -523,7 +532,8 @@ class _PlayScreenState extends State<PlayScreen> {
                         onTap: () {
                           setState(() {
                             // cardDeckOpened.reversed;
-                            cardDeckClosed.addAll(cardDeckOpened.reversed.map((card) {
+                            cardDeckClosed
+                                .addAll(cardDeckOpened.reversed.map((card) {
                               return card
                                 ..isFaceUp = false
                                 ..isOpened = false;

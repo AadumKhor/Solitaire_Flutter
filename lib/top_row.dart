@@ -45,7 +45,6 @@ class _TopRowState extends State<TopRow> {
           if (CardType.values.indexOf(addedCard.value) == widget.cards.length) {
             return true;
           }
-          return false;
         }}
       },
       onAccept: (value) {
