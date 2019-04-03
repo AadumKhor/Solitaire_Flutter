@@ -20,7 +20,7 @@ class _StartScreenState extends State<StartScreen>
     animation =
         new CurvedAnimation(parent: controller, curve: Curves.easeInCubic);
     Timer(Duration(seconds: 3),
-        () => Navigator.pushReplacementNamed(context, '/menu'));
+        () => Navigator.pushReplacementNamed(context, '/game'));
   }
 
   @override

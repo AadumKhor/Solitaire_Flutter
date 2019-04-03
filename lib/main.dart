@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Solitaire',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: StartScreen(),
+      home: PlayScreen(),
       initialRoute: '.',
       routes: {
         '.':(context) => StartScreen(),
