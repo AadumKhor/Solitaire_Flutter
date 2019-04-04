@@ -52,8 +52,17 @@ class _CardColumnState extends State<CardColumn> {
             },
             onWillAccept: (value) {
               // If empty, accept
+              List<PlayingCard> draggedCardEmptyList = value["cards"];
+              PlayingCard draggedCardEmpty = draggedCardEmptyList.first;
+              print(draggedCardEmpty.value);
               if (widget.cards.length == 0) {
+                // print(widget.cards);
+                if(draggedCardEmpty.value == CardType.king){
                 return true;
+                }
+                else{
+                  return false;
+                }
               }
 
               // Get dragged cards list

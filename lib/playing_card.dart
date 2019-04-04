@@ -33,12 +33,15 @@ class PlayingCard {
   CardType value;
   bool isFaceUp;
   bool isOpened;
+  bool isFoundation;
 
   PlayingCard(
       {@required this.suit,
       @required this.value,
       this.isFaceUp,
-      this.isOpened});
+      this.isOpened,
+      this.isFoundation = false
+      });
 
   CardColor getCardColor() {
     if (suit == CardSuit.hearts || suit == CardSuit.diamonds) {

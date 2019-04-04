@@ -32,6 +32,7 @@ class _TopRowState extends State<TopRow> {
             : TransformCard(
                 playingCard: widget.cards.last,
                 columnIndex: widget.columnIndex,
+                isFoundation: true,
                 attachedCards: [
                   widget.cards.last,
                 ],

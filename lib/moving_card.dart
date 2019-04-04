@@ -9,54 +9,58 @@ class TransformCard extends StatefulWidget {
   final int transformIndex;
   final int columnIndex;
   final List<PlayingCard> attachedCards;
+  final isFoundation;
 
   TransformCard(
       {@required this.playingCard,
       this.transformDistance = 15.0,
       this.transformIndex = 0,
       this.columnIndex,
-      this.attachedCards});
+      this.attachedCards,
+      this.isFoundation = false});
 
   @override
   _TransformCardState createState() => _TransformCardState();
 }
 
 class _TransformCardState extends State<TransformCard> {
-  
   @override
   Widget build(BuildContext context) {
     double y = widget.transformDistance * widget.transformIndex;
     return Transform(
-      transform: Matrix4.identity()
-        ..translate(0.0 , y , 0.0),
+      transform: Matrix4.identity()..translate(0.0, y, 0.0),
       child: _buildCards(),
     );
   }
 
   Widget _buildCards() {
-    return !widget.playingCard.isFaceUp
-        ? Container(
-            height: 60.0,
-            width: 40.0,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(width: 1.0, color: Colors.black),
-            ),
-          )
-        : Draggable<Map>(
-            child: _buildFaceUpCard(),
-            feedback: CardColumn(
-              cards: widget.attachedCards,
-              columnIndex: 1,
-              onCardsAdded: (card, position) {},
-            ),
-            childWhenDragging: _buildFaceUpCard(),
-            data: {
-              "cards": widget.attachedCards,
-              "fromIndex": widget.columnIndex
-            },
-          );
+    if (widget.isFoundation == false) {
+      return !widget.playingCard.isFaceUp
+          ? Container(
+              height: 60.0,
+              width: 40.0,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(width: 1.0, color: Colors.black),
+              ),
+            )
+          : Draggable<Map>(
+              child: _buildFaceUpCard(),
+              feedback: CardColumn(
+                cards: widget.attachedCards,
+                columnIndex: 1,
+                onCardsAdded: (card, position) {},
+              ),
+              childWhenDragging: _buildFaceUpCard(),
+              data: {
+                "cards": widget.attachedCards,
+                "fromIndex": widget.columnIndex
+              },
+            );
+    } else if (widget.isFoundation == true) {
+      return Container(height: 60.0, width: 40.0, child: _buildFaceUpCard());
+    }
   }
 
   Widget _buildFaceUpCard() {
@@ -74,6 +78,7 @@ class _TransformCardState extends State<TransformCard> {
       // ),
     );
   }
+
   // as the name says, this is not part of the UI
   Widget _assignPngToCard() {
     String s = _assignSuitToCard();
