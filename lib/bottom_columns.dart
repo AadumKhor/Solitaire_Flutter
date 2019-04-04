@@ -60,7 +60,7 @@ class _CardColumnState extends State<CardColumn> {
               List<PlayingCard> draggedCards = value["cards"];
               PlayingCard firstCard = draggedCards.first;
               int lastColumnIndex = CardType.values.indexOf(widget.cards.last.value);
-              int firstCardIndex = CardType.values.indexOf(draggedCards.last.value);
+              int firstCardIndex = CardType.values.indexOf(draggedCards.first.value);
               
               if(widget.cards.last.getCardColor() == firstCard.getCardColor()){
                 return false;
