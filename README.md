@@ -38,6 +38,9 @@ Solitaire or Klondike implemented originally by Microsoft is a single player gam
     
   ### Suggestions and contributions are welcome. 
   
+  ## Check out
+   silent-lad's implementation of the same at https://github.com/silent-lad/VueSolitaire
+  
  
   
   
