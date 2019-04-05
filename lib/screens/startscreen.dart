@@ -20,7 +20,7 @@ class _StartScreenState extends State<StartScreen>
     animation =
         new CurvedAnimation(parent: controller, curve: Curves.easeInCubic);
     Timer(Duration(seconds: 3),
-        () => Navigator.pushReplacementNamed(context, '/game'));
+        () => Navigator.pushReplacementNamed(context, '/menu'));
   }
 
   @override
@@ -51,10 +51,10 @@ class _StartScreenState extends State<StartScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image(
-                image: AssetImage('assets/card_suits'),
-                fit: BoxFit.cover,
-              ),
+              // Image(
+              //   image: AssetImage('assets/card_suits'),
+              //   fit: BoxFit.cover,
+              // ),
               SizedBox(
                 height: 20.0,
               ),
