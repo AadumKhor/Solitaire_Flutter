@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '.':(context) => StartScreen(),
         '/menu' :(context) => Options(),
-        '/game' : (context) => PlayScreen(),
+        '/klondike' : (context) => PlayScreen(),
         '/rules' : (context)=> Rules(),
-        '/spider_play':(context) => SpiderPlayScreen()
+        '/spider':(context) => SpiderPlayScreen()
       },
     );
   }

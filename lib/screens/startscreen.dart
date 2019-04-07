@@ -6,7 +6,7 @@ class StartScreen extends StatefulWidget {
   @override
   _StartScreenState createState() => _StartScreenState();
 }
-
+//TODO: Make the transition and colors different
 class _StartScreenState extends State<StartScreen>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
@@ -39,11 +39,10 @@ class _StartScreenState extends State<StartScreen>
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              gradient: RadialGradient(
-                  colors: [Colors.green, Colors.white],
+              gradient: LinearGradient(
+                  colors: [Colors.green, Colors.white , Colors.red , Colors.black],
                   tileMode: TileMode.mirror,
-                  center: Alignment.center,
-                  radius: 3),
+                  ),
               image: DecorationImage(
                   image: AssetImage('assets/card_frame.png'),
                   fit: BoxFit.contain)),

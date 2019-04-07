@@ -40,8 +40,8 @@ class _OptionsState extends State<Options> {
                 ),
               ),
             ),
-            _optionCards('K', 'londike', 'assets/menu.png' , 5.0),
-            _optionCards('S', 'pider', 'assets/menu.png' , 50.0),
+            _optionCards('K', 'londike', 'assets/menu.png' , 5.0 , '/klondike'),
+            _optionCards('S', 'pider', 'assets/menu.png' , 50.0 , '/spider'),
             Container(
               margin: EdgeInsets.all(10.0),
               width: double.infinity,
@@ -82,10 +82,10 @@ class _OptionsState extends State<Options> {
     );
   }
 
-  Widget _optionCards(String firstLetter, String restName, String imgPath , double rightMargin) {
+  Widget _optionCards(String firstLetter, String restName, String imgPath , double rightMargin , String pathName) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/game');
+        Navigator.pushNamed(context, pathName);
       },
       child: Card(
         color: Colors.transparent,
