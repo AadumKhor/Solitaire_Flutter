@@ -22,9 +22,9 @@ class _OptionsState extends State<Options> {
             Colors.green[900]
           ], tileMode: TileMode.clamp, center: Alignment.center, radius: 1.5),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 30.0 , bottom: 10.0),
@@ -40,7 +40,8 @@ class _OptionsState extends State<Options> {
                 ),
               ),
             ),
-            _optionCards('K', 'londike', 'assets/menu.png'),
+            _optionCards('K', 'londike', 'assets/menu.png' , 5.0),
+            _optionCards('S', 'pider', 'assets/menu.png' , 50.0),
             Container(
               margin: EdgeInsets.all(10.0),
               width: double.infinity,
@@ -53,9 +54,9 @@ class _OptionsState extends State<Options> {
               decoration: BoxDecoration(
                   border: Border.all(width: 2.0, color: Colors.black)),
             ),
-            Spacer(
-              flex: 2,
-            ),
+           SizedBox(
+             height: 100,
+           ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -81,7 +82,7 @@ class _OptionsState extends State<Options> {
     );
   }
 
-  Widget _optionCards(String firstLetter, String restName, String imgPath) {
+  Widget _optionCards(String firstLetter, String restName, String imgPath , double rightMargin) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/game');
@@ -133,7 +134,7 @@ class _OptionsState extends State<Options> {
                 ),
               ),
               Positioned(
-                right: 5.0,
+                right: rightMargin,
                 bottom: 25.0,
                 child: Text(
                   restName,
