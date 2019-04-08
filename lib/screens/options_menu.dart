@@ -42,7 +42,7 @@ class _OptionsState extends State<Options> {
             ),
             _optionCards('K', 'londike', 'assets/menu.png' , 5.0 , '/klondike'),
             _optionCards('S', 'pider', 'assets/menu.png' , 50.0 , '/spider'),
-            _optionCards('I', 'nvert', 'assets/menu.png', 50.0, '/invert'),
+            _optionCards('I', 'nvert', 'assets/menu.png', 90.0, '/invert'),
             Container(
               margin: EdgeInsets.all(10.0),
               width: double.infinity,

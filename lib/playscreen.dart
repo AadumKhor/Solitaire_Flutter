@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:solitaire_flutter/bottom_columns.dart';
 import 'package:solitaire_flutter/moving_card.dart';
 // import 'solitaire.dart';
@@ -51,6 +52,9 @@ class _PlayScreenState extends State<PlayScreen> {
 
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp , DeviceOrientation.portraitDown]
+    );
     _startFunction();
   }
 

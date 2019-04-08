@@ -24,8 +24,6 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
   @override
   void dispose() {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp
     ]);
