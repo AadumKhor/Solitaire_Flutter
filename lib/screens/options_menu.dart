@@ -167,3 +167,4 @@ class PhotoClipper extends CustomClipper<Path> {
     return false;
   }
 }
+

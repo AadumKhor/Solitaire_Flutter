@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
       home: PlayScreen(),
-      initialRoute: '.',
+      initialRoute: '/menu',
       routes: {
         '.':(context) => StartScreen(),
         '/menu' :(context) => Options(),

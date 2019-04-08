@@ -7,7 +7,6 @@ typedef Null CardAcceptCallback(List<PlayingCard> card, int fromIndex);
 
 // This is a stack of overlayed cards (implemented using a stack)
 class CardColumn extends StatefulWidget {
-
   // List of cards in the stack
   final List<PlayingCard> cards;
 
@@ -16,11 +15,17 @@ class CardColumn extends StatefulWidget {
 
   // The index of the list in the game
   final int columnIndex;
+  final bool klondike;
+  final bool isSpider1;
+  final bool isSpider2;
 
   CardColumn(
       {@required this.cards,
       @required this.onCardsAdded,
-      @required this.columnIndex});
+      @required this.columnIndex,
+      this.klondike = true,
+      this.isSpider1 = false,
+      this.isSpider2 = false});
 
   @override
   _CardColumnState createState() => _CardColumnState();
@@ -44,44 +49,73 @@ class _CardColumnState extends State<CardColumn> {
                   return TransformCard(
                     playingCard: card,
                     transformIndex: index,
-                    attachedCards: widget.cards.sublist(index, widget.cards.length),
+                    attachedCards:
+                        widget.cards.sublist(index, widget.cards.length),
                     columnIndex: widget.columnIndex,
                   );
                 }).toList(),
               );
             },
             onWillAccept: (value) {
-              // If empty, accept
-              List<PlayingCard> draggedCardEmptyList = value["cards"];
-              PlayingCard draggedCardEmpty = draggedCardEmptyList.first;
-              print(draggedCardEmpty.value);
-              if (widget.cards.length == 0) {
-                // print(widget.cards);
-                if(draggedCardEmpty.value == CardType.king){
-                return true;
-                }
-                else{
-                  return false;
-                }
-              }
+              CardColumn column;
+              if (widget.klondike) {
+                // If empty, accept
+                List<PlayingCard> draggedCardEmptyList = value["cards"];
+                PlayingCard draggedCardEmpty = draggedCardEmptyList.first;
+                // print(draggedCardEmpty.value);
 
-              // Get dragged cards list
-              List<PlayingCard> draggedCards = value["cards"];
-              PlayingCard firstCard = draggedCards.first;
-              int lastColumnIndex = CardType.values.indexOf(widget.cards.last.value);
-              int firstCardIndex = CardType.values.indexOf(draggedCards.first.value);
-              
-              if(widget.cards.last.getCardColor() == firstCard.getCardColor()){
-                return false;
+                if (widget.cards.length == 0) {
+                  // print(widget.cards);
+                  if (draggedCardEmpty.value == CardType.king) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+
+                // Get dragged cards list
+                List<PlayingCard> draggedCards = value["cards"];
+                PlayingCard firstCard = draggedCards.first;
+                int lastColumnIndex =
+                    CardType.values.indexOf(widget.cards.last.value);
+                int firstCardIndex =
+                    CardType.values.indexOf(draggedCards.first.value);
+
+                if (widget.cards.last.getCardColor() ==
+                    firstCard.getCardColor()) {
+                  return false;
+                } else if (lastColumnIndex != firstCardIndex + 1) {
+                  return false;
+                } else if (lastColumnIndex == firstCardIndex + 1) {
+                  return true;
+                } else {
+                  return true;
+                }
               }
-              else if(lastColumnIndex != firstCardIndex +1){
-                return false;
-              }
-              else if(lastColumnIndex == firstCardIndex +1){
-                return true;
-              }
-              else {
-                return true;
+              //spider 1 logic
+              else if (widget.isSpider1) {
+                List<PlayingCard> draggedCard = value["cards"];
+                PlayingCard card = draggedCard.first;
+
+                if (widget.cards.length == 0) {
+                  if (card.value == CardType.king) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+
+                int lastCardIndex =
+                    CardType.values.indexOf(widget.cards.last.value);
+                int firstCardIndex = CardType.values.indexOf(card.value);
+
+                if (widget.cards.last.suit == card.suit) {
+                  if (lastCardIndex != firstCardIndex + 1) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                }
               }
             },
             onAccept: (value) {

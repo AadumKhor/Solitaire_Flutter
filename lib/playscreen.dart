@@ -27,7 +27,15 @@ class _PlayScreenState extends State<PlayScreen> {
   static List<PlayingCard> bottom5 = new List();
   static List<PlayingCard> bottom6 = new List();
 
-  List<List<PlayingCard>> bottomDecks =[bottom0 , bottom1 , bottom2 , bottom3 , bottom4 , bottom5 , bottom6];
+  List<List<PlayingCard>> bottomDecks = [
+    bottom0,
+    bottom1,
+    bottom2,
+    bottom3,
+    bottom4,
+    bottom5,
+    bottom6
+  ];
 
   // the cards that are shown and the cards that are not present
 
@@ -129,6 +137,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom0,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom0.addAll(cards);
@@ -144,6 +155,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom1,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom1.addAll(cards);
@@ -159,6 +173,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom2,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom2.addAll(cards);
@@ -174,6 +191,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom3,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom3.addAll(cards);
@@ -189,6 +209,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom4,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom4.addAll(cards);
@@ -204,6 +227,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom5,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom5.addAll(cards);
@@ -219,6 +245,9 @@ class _PlayScreenState extends State<PlayScreen> {
               Expanded(
                 child: CardColumn(
                   cards: bottom6,
+                  klondike: true,
+                  isSpider1: false,
+                  isSpider2: false,
                   onCardsAdded: (cards, index) {
                     setState(() {
                       bottom6.addAll(cards);
@@ -233,20 +262,22 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
             ],
           ),
-          Spacer(flex: 1,),
+          Spacer(
+            flex: 1,
+          ),
           FlatButton(
-              color: Colors.black,
-              child: new Text(
-                'Reset Board',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              onPressed: () {
-                _startFunction();
-              },
-            )
+            color: Colors.black,
+            child: new Text(
+              'Reset Board',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            onPressed: () {
+              _startFunction();
+            },
+          )
         ],
       ),
     );
@@ -362,7 +393,7 @@ class _PlayScreenState extends State<PlayScreen> {
       }
     }
     // print(deck.length);
-    
+
     // we need to declare how many cards are left and how many are shown
 
     // for(var i = 0; i <=6 ; i++){
@@ -370,20 +401,19 @@ class _PlayScreenState extends State<PlayScreen> {
     //     ((i * (i+1))~/2) , ((i * (i+1))~/2) + i +1
     //   );
     //   PlayingCard card = bottomDecks[i].elementAt(i);
-      
-      
+
     //   deck.remove(bottomDecks[i]);
     //   }
-    cardDeckClosed = deck;  // first assign it equal to the full deck
+    cardDeckClosed = deck; // first assign it equal to the full deck
     print(cardDeckClosed.length);
     // print(cardDeckClosed.last); /
     // then add the last cards of the above deck to the opened deck to make it open.
     // since it is open we know it is faceUP and opened is true
-    cardDeckOpened.add(cardDeckClosed.removeAt(cardDeckClosed.length -1)
+    cardDeckOpened.add(cardDeckClosed.removeAt(cardDeckClosed.length - 1)
       ..isFaceUp = true
       ..isOpened = true);
-      print(cardDeckOpened.length);
-      print(cardDeckClosed.length + cardDeckOpened.length);
+    print(cardDeckOpened.length);
+    print(cardDeckClosed.length + cardDeckOpened.length);
     setState(() {}); // setting the state of the game
   }
 
@@ -550,14 +580,6 @@ class _PlayScreenState extends State<PlayScreen> {
                               color: Colors.black26,
                               border: Border.all(width: 2.0)),
                         ))),
-            // : Opacity(
-            //     opacity: 0.9,
-            //     child: Padding(
-            //         padding: const EdgeInsets.all(4.0),
-            //         child: Container(
-            //           color: Colors.red,
-            //         )),
-            //   ),
           ),
           cardDeckOpened.isNotEmpty
               ? Padding(

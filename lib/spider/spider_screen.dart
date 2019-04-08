@@ -80,7 +80,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.blue,
       body: Padding(
         padding: const EdgeInsets.only(top: 28.0, right: 10.0, left: 10.0),
         child: Column(
@@ -91,6 +91,9 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               children: <Widget>[
                 CardColumn(
                   columnIndex: 1,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   cards: column0,
                   onCardsAdded: (cards, index) {
                     setState(() {
@@ -104,10 +107,13 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 ),
                 CardColumn(
                   columnIndex: 2,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   cards: column1,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column1.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -117,10 +123,13 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 ),
                 CardColumn(
                   columnIndex: 3,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   cards: column2,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column2.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -131,9 +140,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 4,
                   cards: column3,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column3.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -144,9 +156,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 5,
                   cards: column4,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column4.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -157,9 +172,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 6,
                   cards: column5,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column5.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -170,9 +188,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 7,
                   cards: column6,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column6.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -183,9 +204,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 8,
                   cards: column7,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column7.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -196,9 +220,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 9,
                   cards: column8,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column8.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -209,9 +236,12 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                 CardColumn(
                   columnIndex: 10,
                   cards: column9,
+                  isSpider1: true,
+                  klondike: false,
+                  isSpider2: true,
                   onCardsAdded: (cards, index) {
                     setState(() {
-                      column0.addAll(cards);
+                      column9.addAll(cards);
                       int length = _getListFromIndex(index).length;
                       _getListFromIndex(index)
                           .removeRange(length - cards.length, length);
@@ -222,7 +252,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               ],
             ),
             Spacer(
-              flex: 2,
+              flex: 1,
             ),
             // foundation and deck
             Padding(
@@ -285,15 +315,33 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                         border: Border.all(width: 2.0, color: Colors.black),
                         borderRadius: BorderRadius.circular(10.0)),
                   ),
-                  SizedBox(
-                    width: 300.0,
+
+                  FlatButton(
+                    color: Colors.black,
+                    onPressed: (){
+                      setState(() {
+                       _startFunction(); 
+                      });
+                    },
+                    child: Text('Reset Board' , style: TextStyle(color: Colors.white , fontSize: 25.0 , fontWeight: FontWeight.w400),),
                   ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
+                  SizedBox(
+                    width: 150.0,
+                  ),
+                  GestureDetector(
+                    onTap:(){
+                      setState(() {
+                        
+                      });
+                    },
+                    child: Container(
+                      width: 40.0,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          border: Border.all(width: 2.0, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
                   )
                 ],
               ),
@@ -341,10 +389,10 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
     Random random = new Random();
     int rand = random.nextInt(deck.length);
 
-    for (int i = 0; i <=55; i++) {
-      if (i >= 0 && i <= 6) {
+    for (int i = 0; i <= 55; i++) {
+      if (i >= 0 && i <= 5) {
         PlayingCard card = deck[rand];
-        if (i == 6) {
+        if (i == 5) {
           column0.add(card..isFaceUp = true);
         } else {
           column0.add(card..isFaceUp = false);
@@ -358,8 +406,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column1.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 13 && i <= 18) {
+      } else if (i >= 13 && i <= 18) {
         PlayingCard card = deck[rand];
         if (i == 18) {
           column2.add(card..isFaceUp = true);
@@ -367,8 +414,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column2.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 19 && i <= 24) {
+      } else if (i >= 19 && i <= 24) {
         PlayingCard card = deck[rand];
         if (i == 24) {
           column3.add(card..isFaceUp = true);
@@ -376,8 +422,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column3.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 25 && i <= 30) {
+      } else if (i >= 25 && i <= 30) {
         PlayingCard card = deck[rand];
         if (i == 30) {
           column4.add(card..isFaceUp = true);
@@ -385,8 +430,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column4.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 31 && i <= 35) {
+      } else if (i >= 31 && i <= 35) {
         PlayingCard card = deck[rand];
         if (i == 35) {
           column5.add(card..isFaceUp = true);
@@ -394,8 +438,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column5.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 36 && i <= 40) {
+      } else if (i >= 36 && i <= 40) {
         PlayingCard card = deck[rand];
         if (i == 40) {
           column6.add(card..isFaceUp = true);
@@ -403,8 +446,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column6.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 41 && i <= 45) {
+      } else if (i >= 41 && i <= 45) {
         PlayingCard card = deck[rand];
         if (i == 45) {
           column7.add(card..isFaceUp = true);
@@ -412,8 +454,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column7.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 46 && i <= 50) {
+      } else if (i >= 46 && i <= 50) {
         PlayingCard card = deck[rand];
         if (i == 50) {
           column8.add(card..isFaceUp = true);
@@ -421,51 +462,15 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           column8.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
-      }
-      else if (i >= 51 && i <= 55) {
+      } else if (i >= 51 && i <= 54) {
         PlayingCard card = deck[rand];
-        if (i == 55) {
+        if (i == 54) {
           column9.add(card..isFaceUp = true);
         } else {
           column9.add(card..isFaceUp = false);
         }
         deck.removeAt(rand);
       }
-      // if(i== 0 || i == 9 || i == 19 || i == 29 || i==39){
-      //   PlayingCard card = deck[rand];
-      //   column0.add(card ..isFaceUp = false ..isOpened = true ..isFoundation = false);
-      //   deck.remove(card);
-      // }
-      // else if(i == 1 || i == 10 || i == 20 || i == 30 || i ==40){
-      //   PlayingCard card = deck[rand];
-      //   column1.add(card ..isFaceUp = false ..isFoundation = false);
-      //   deck.remove(card);
-      // }
-      // else if(i == 2 || i == 11 || i == 21 || i == 31 || i ==41){
-
-      // }
-      // else if(i == 3 || i == 12 || i == 22 || i == 32 || i ==42){
-
-      // }
-      // else if(i == 4 || i == 13 || i == 23 || i == 33 || i ==43){
-
-      // }
-      // else if(i == 5 || i == 14 || i == 24 || i == 34){
-
-      // }
-      // else if(i == 6 || i == 15 || i == 25 || i == 35){
-
-      // }
-      // else if(i == 7 || i == 16 || i == 26 || i == 36){
-
-      // }
-      // else if(i == 8 || i == 17 || i == 27 || i == 37){
-
-      // }
-      // else if(i == 9 || i == 18 || i == 28 || i == 38){
-
-      // }
-      // else if()
     }
 
     cardDeckClosed = deck;
@@ -482,7 +487,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
             finalDeck7.length +
             finalDeck8.length ==
         104) {
-      // _handleWin();
+      _handleWin();
     }
 
     setState(() {
@@ -492,6 +497,28 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
           ..isOpened = true;
       }
     });
+  }
+
+  // Handle a win condition
+  void _handleWin() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Congratulations!"),
+          content: Text("You Win!"),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                _startFunction();
+                Navigator.pop(context);
+              },
+              child: Text("Play again"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   List<PlayingCard> _getListFromIndex(int index) {
