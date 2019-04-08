@@ -304,7 +304,7 @@ class _PlayScreenState extends State<PlayScreen> {
     cardDeckOpened = []; // cards that are shown
 
     playCards(); // generates a shuffled deck
-    print(deck.length);
+    // print(deck.length);
     Random random = Random(); // take a random number
 
     // laying cards on the screen using a pattern
@@ -405,15 +405,15 @@ class _PlayScreenState extends State<PlayScreen> {
     //   deck.remove(bottomDecks[i]);
     //   }
     cardDeckClosed = deck; // first assign it equal to the full deck
-    print(cardDeckClosed.length);
+    // print(cardDeckClosed.length);
     // print(cardDeckClosed.last); /
     // then add the last cards of the above deck to the opened deck to make it open.
     // since it is open we know it is faceUP and opened is true
     cardDeckOpened.add(cardDeckClosed.removeAt(cardDeckClosed.length - 1)
       ..isFaceUp = true
       ..isOpened = true);
-    print(cardDeckOpened.length);
-    print(cardDeckClosed.length + cardDeckOpened.length);
+    // print(cardDeckOpened.length);
+    // print(cardDeckClosed.length + cardDeckOpened.length);
     setState(() {}); // setting the state of the game
   }
 

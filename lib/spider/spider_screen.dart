@@ -315,33 +315,46 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
                         border: Border.all(width: 2.0, color: Colors.black),
                         borderRadius: BorderRadius.circular(10.0)),
                   ),
-
                   FlatButton(
                     color: Colors.black,
-                    onPressed: (){
+                    onPressed: () {
                       setState(() {
-                       _startFunction(); 
+                        _startFunction();
                       });
                     },
-                    child: Text('Reset Board' , style: TextStyle(color: Colors.white , fontSize: 25.0 , fontWeight: FontWeight.w400),),
+                    child: Text(
+                      'Reset Board',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
                   SizedBox(
                     width: 150.0,
                   ),
                   GestureDetector(
-                    onTap:(){
-                      setState(() {
-                        
-                      });
+                    onTap: () {
+                      _dealCards();
                     },
-                    child: Container(
-                      width: 40.0,
-                      height: 60.0,
-                      decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          border: Border.all(width: 2.0, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
+                    child: cardDeckClosed.isNotEmpty
+                        ? Container(
+                            width: 40.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                border:
+                                    Border.all(width: 2.0, color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.0)),
+                          )
+                        : Container(
+                            width: 40.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2.0, color: Colors.black),
+                                color: Colors.black26),
+                          ),
                   )
                 ],
               ),
@@ -563,6 +576,25 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
         return finalDeck8;
       default:
         return null;
+    }
+  }
+
+  void _dealCards() {
+    if (cardDeckClosed.isNotEmpty) {
+      setState(() {
+        column0.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column1.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column2.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column3.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column4.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column5.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column6.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column7.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column8.add(cardDeckClosed.removeLast()..isFaceUp = true);
+        column9.add(cardDeckClosed.removeLast()..isFaceUp = true);
+      });
+    } else {
+      return null;
     }
   }
 }
