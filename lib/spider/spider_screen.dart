@@ -256,111 +256,55 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
             // foundation and deck
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: _buildFinalDecks(),
-              // child: Row(
-              //   children: <Widget>[
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Container(
-              //       width: 40.0,
-              //       height: 60.0,
-              //       decoration: BoxDecoration(
-              //           border: Border.all(width: 2.0, color: Colors.black),
-              //           borderRadius: BorderRadius.circular(10.0)),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.all(10.0),
-              //       child: FlatButton(
-              //         color: Colors.black,
-              //         onPressed: () {
-              //           setState(() {
-              //             _startFunction();
-              //           });
-              //         },
-              //         child: Text(
-              //           'Reset Board',
-              //           style: TextStyle(
-              //               color: Colors.white,
-              //               fontSize: 25.0,
-              //               fontWeight: FontWeight.w400),
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 140.0,
-              //     ),
-              //     GestureDetector(
-              //       onTap: () {
-              //         _dealCards();
-              //       },
-              //       child: cardDeckClosed.isNotEmpty
-              //           ? Container(
-              //               width: 40.0,
-              //               height: 60.0,
-              //               decoration: BoxDecoration(
-              //                   color: Colors.redAccent,
-              //                   border:
-              //                       Border.all(width: 2.0, color: Colors.black),
-              //                   borderRadius: BorderRadius.circular(10.0)),
-              //             )
-              //           : Container(
-              //               width: 40.0,
-              //               height: 60.0,
-              //               decoration: BoxDecoration(
-              //                   border:
-              //                       Border.all(width: 2.0, color: Colors.black),
-              //                   color: Colors.black26),
-              //             ),
-              //     )
-              //   ],
-              // ),
+              child: Row(
+                children: <Widget>[
+                  _buildFinalDecks(),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      color: Colors.black,
+                      onPressed: () {
+                        setState(() {
+                          _startFunction();
+                        });
+                      },
+                      child: Text(
+                        'Reset Board',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 70.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _dealCards();
+                    },
+                    child: cardDeckClosed.isNotEmpty
+                        ? Container(
+                            width: 40.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                border:
+                                    Border.all(width: 2.0, color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.0)),
+                          )
+                        : Container(
+                            width: 40.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2.0, color: Colors.black),
+                                color: Colors.black26),
+                          ),
+                  )
+                ],
+              ),
             )
           ],
         ),
@@ -592,7 +536,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck1,
               onCardAccepted: (cards, index) {
                 finalDeck1.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -609,7 +553,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck2,
               onCardAccepted: (cards, index) {
                 finalDeck2.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -626,7 +570,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck3,
               onCardAccepted: (cards, index) {
                 finalDeck3.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -643,7 +587,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck4,
               onCardAccepted: (cards, index) {
                 finalDeck4.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -660,7 +604,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck5,
               onCardAccepted: (cards, index) {
                 finalDeck5.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -677,7 +621,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck6,
               onCardAccepted: (cards, index) {
                 finalDeck6.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -694,7 +638,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck7,
               onCardAccepted: (cards, index) {
                 finalDeck7.addAll(cards);
                 int length = _getListFromIndex(index).length;
@@ -711,7 +655,7 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
               isSpider1: true,
               isKlondike: false,
               // suit: CardSuit.clubs,
-              // cards: finalClubsDeck,
+              cards: finalDeck8,
               onCardAccepted: (cards, index) {
                 finalDeck8.addAll(cards);
                 int length = _getListFromIndex(index).length;
