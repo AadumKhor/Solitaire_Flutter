@@ -8,8 +8,20 @@ class TopRow extends StatefulWidget {
   final List<PlayingCard> cards;
   final CardAcceptCallback onCardAccepted;
   final int columnIndex;
+  final bool isKlondike;
+  final bool isSpider1;
+  final bool isSpider2;
+  final bool invert;
 
-  TopRow({this.suit, this.cards, this.onCardAccepted, this.columnIndex});
+  TopRow(
+      {this.suit,
+      this.cards,
+      this.onCardAccepted,
+      this.columnIndex,
+      this.isKlondike = true,
+      this.isSpider1 = false,
+      this.isSpider2 = false,
+      this.invert = false});
 
   _TopRowState createState() => _TopRowState();
 }
@@ -39,14 +51,39 @@ class _TopRowState extends State<TopRow> {
               );
       },
       onWillAccept: (value) {
-        PlayingCard addedCard = value["cards"].last;
+        if (widget.isKlondike) {
+          PlayingCard addedCard = value["cards"].last;
 
-      if(widget.suit == addedCard.suit){
-        if (addedCard.suit == widget.suit) {
-          if (CardType.values.indexOf(addedCard.value) == widget.cards.length) {
-            return true;
+          if (widget.suit == addedCard.suit) {
+            if (addedCard.suit == widget.suit) {
+              if (CardType.values.indexOf(addedCard.value) ==
+                  widget.cards.length) {
+                return true;
+              }
+            }
           }
-        }}
+        } else if (widget.isSpider1) {
+          List<PlayingCard> addedCards = value["cards"];
+
+          if (addedCards.first.value == CardType.king) {
+            if (addedCards.last.value == CardType.one) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        } else if (widget.invert) {
+          PlayingCard addedCard = value["cards"].last;
+
+          if (widget.suit == addedCard.suit) {
+            if (addedCard.suit == widget.suit) {
+              if (CardType.values.indexOf(addedCard.value) -12 ==
+                  widget.cards.length) {
+                return true;
+              }
+            }
+          }
+        }
       },
       onAccept: (value) {
         widget.onCardAccepted(
@@ -60,7 +97,6 @@ class _TopRowState extends State<TopRow> {
   // for diplaying top row suits
 
   Image _suitImage() {
-
     if (widget.suit == CardSuit.clubs) {
       return Image.asset('assets/clubs.png');
     } else if (widget.suit == CardSuit.diamonds) {

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:solitaire_flutter/playing_card.dart';
 import 'package:solitaire_flutter/moving_card.dart';
 import 'package:solitaire_flutter/bottom_columns.dart';
+import 'package:solitaire_flutter/top_row.dart';
 
 class SpiderPlayScreen extends StatefulWidget {
   @override
@@ -257,107 +258,111 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
             // foundation and deck
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  Container(
-                    width: 40.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.black),
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                  FlatButton(
-                    color: Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        _startFunction();
-                      });
-                    },
-                    child: Text(
-                      'Reset Board',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150.0,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      _dealCards();
-                    },
-                    child: cardDeckClosed.isNotEmpty
-                        ? Container(
-                            width: 40.0,
-                            height: 60.0,
-                            decoration: BoxDecoration(
-                                color: Colors.redAccent,
-                                border:
-                                    Border.all(width: 2.0, color: Colors.black),
-                                borderRadius: BorderRadius.circular(10.0)),
-                          )
-                        : Container(
-                            width: 40.0,
-                            height: 60.0,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 2.0, color: Colors.black),
-                                color: Colors.black26),
-                          ),
-                  )
-                ],
-              ),
+              child: _buildFinalDecks(),
+              // child: Row(
+              //   children: <Widget>[
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Container(
+              //       width: 40.0,
+              //       height: 60.0,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(width: 2.0, color: Colors.black),
+              //           borderRadius: BorderRadius.circular(10.0)),
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.all(10.0),
+              //       child: FlatButton(
+              //         color: Colors.black,
+              //         onPressed: () {
+              //           setState(() {
+              //             _startFunction();
+              //           });
+              //         },
+              //         child: Text(
+              //           'Reset Board',
+              //           style: TextStyle(
+              //               color: Colors.white,
+              //               fontSize: 25.0,
+              //               fontWeight: FontWeight.w400),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 140.0,
+              //     ),
+              //     GestureDetector(
+              //       onTap: () {
+              //         _dealCards();
+              //       },
+              //       child: cardDeckClosed.isNotEmpty
+              //           ? Container(
+              //               width: 40.0,
+              //               height: 60.0,
+              //               decoration: BoxDecoration(
+              //                   color: Colors.redAccent,
+              //                   border:
+              //                       Border.all(width: 2.0, color: Colors.black),
+              //                   borderRadius: BorderRadius.circular(10.0)),
+              //             )
+              //           : Container(
+              //               width: 40.0,
+              //               height: 60.0,
+              //               decoration: BoxDecoration(
+              //                   border:
+              //                       Border.all(width: 2.0, color: Colors.black),
+              //                   color: Colors.black26),
+              //             ),
+              //     )
+              //   ],
+              // ),
             )
           ],
         ),
@@ -577,6 +582,151 @@ class _SpiderPlayScreenState extends State<SpiderPlayScreen> {
       default:
         return null;
     }
+  }
+
+  Widget _buildFinalDecks() {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck1.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 11,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck2.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 12,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck3.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 13,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck4.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 14,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck5.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 15,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck6.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 16,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck7.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 17,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TopRow(
+              isSpider1: true,
+              isKlondike: false,
+              // suit: CardSuit.clubs,
+              // cards: finalClubsDeck,
+              onCardAccepted: (cards, index) {
+                finalDeck8.addAll(cards);
+                int length = _getListFromIndex(index).length;
+                _getListFromIndex(index)
+                    .removeRange(length - cards.length, length);
+                _refreshList(index);
+              },
+              columnIndex: 18,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _dealCards() {

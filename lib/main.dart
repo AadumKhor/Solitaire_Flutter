@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solitaire_flutter/invert_solitaire/invert_playscreen.dart';
 import 'package:solitaire_flutter/playscreen.dart';
 import 'package:solitaire_flutter/screens/options_menu.dart';
 import 'package:solitaire_flutter/screens/rules.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         '/menu' :(context) => Options(),
         '/klondike' : (context) => PlayScreen(),
         '/rules' : (context)=> Rules(),
-        '/spider':(context) => SpiderPlayScreen()
+        '/spider':(context) => SpiderPlayScreen(),
+        '/invert': (context) => InvertPlayScreen()
       },
     );
   }

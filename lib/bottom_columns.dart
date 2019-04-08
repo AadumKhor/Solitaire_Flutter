@@ -18,6 +18,7 @@ class CardColumn extends StatefulWidget {
   final bool klondike;
   final bool isSpider1;
   final bool isSpider2;
+  final bool invert;
 
   CardColumn(
       {@required this.cards,
@@ -25,7 +26,8 @@ class CardColumn extends StatefulWidget {
       @required this.columnIndex,
       this.klondike = true,
       this.isSpider1 = false,
-      this.isSpider2 = false});
+      this.isSpider2 = false,
+      this.invert = false});
 
   @override
   _CardColumnState createState() => _CardColumnState();
@@ -57,7 +59,6 @@ class _CardColumnState extends State<CardColumn> {
               );
             },
             onWillAccept: (value) {
-              CardColumn column;
               if (widget.klondike) {
                 // If empty, accept
                 List<PlayingCard> draggedCardEmptyList = value["cards"];
@@ -115,6 +116,37 @@ class _CardColumnState extends State<CardColumn> {
                   } else {
                     return true;
                   }
+                }
+              } else if (widget.invert) {
+                List<PlayingCard> draggedCardEmptyList = value["cards"];
+                PlayingCard draggedCardEmpty = draggedCardEmptyList.first;
+                // print(draggedCardEmpty.value);
+
+                if (widget.cards.length == 0) {
+                  // print(widget.cards);
+                  if (draggedCardEmpty.value == CardType.one) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+                // Get dragged cards list
+                List<PlayingCard> draggedCards = value["cards"];
+                PlayingCard firstCard = draggedCards.first;
+                int lastColumnIndex =
+                    CardType.values.indexOf(widget.cards.last.value);
+                int firstCardIndex =
+                    CardType.values.indexOf(draggedCards.first.value);
+
+                if (widget.cards.last.getCardColor() ==
+                    firstCard.getCardColor()) {
+                  return false;
+                } else if (lastColumnIndex != firstCardIndex - 1) {
+                  return false;
+                } else if (lastColumnIndex == firstCardIndex - 1) {
+                  return true;
+                } else {
+                  return true;
                 }
               }
             },
