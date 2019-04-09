@@ -75,13 +75,23 @@ class _TopRowState extends State<TopRow> {
         } else if (widget.invert) {
           PlayingCard addedCard = value["cards"].last;
 
-          if (widget.suit == addedCard.suit) {
-            if (addedCard.suit == widget.suit) {
-              if (CardType.values.indexOf(addedCard.value) -12 ==
-                  widget.cards.length) {
+          if (widget.cards.length == 0) {
+            if (widget.suit == addedCard.suit) {
+              if (addedCard.value == CardType.king) {
                 return true;
               }
+              // if (addedCard.getValue() ==
+              //     widget.cards.last.getValue() - widget.cards.length) {
+              //   return true;
+              // }
             }
+          } else if (widget.cards.length != 0) {
+            if (addedCard.getValue() ==
+                widget.cards.last.getValue()-1) {
+              return true;
+            }
+          } else {
+            return false;
           }
         }
       },

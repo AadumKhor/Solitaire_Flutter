@@ -103,7 +103,7 @@ class _PlayScreenState extends State<InvertPlayScreen> {
   Widget build(BuildContext context) {
     // playCards();
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.deepPurple,
       body: new Column(
         children: <Widget>[
           //implement top card widget here,
@@ -111,7 +111,7 @@ class _PlayScreenState extends State<InvertPlayScreen> {
             height: 80.0,
           ),
           Text(
-            'Solitaire',
+            'Eriatilos',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 30.0,
