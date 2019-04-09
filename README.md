@@ -32,7 +32,7 @@ Solitaire or Klondike implemented originally by Microsoft is a single player gam
   
   ## Future Scope  
     1. Start Screen can be made better.
-    2. Spider Solitaire can be implemented in the same app.
+    2. Bugs in Spider Solitaire can be fixed.
     3. Various modes including Texas , Vegas etc can be added to make the game more engaging.
     
     
